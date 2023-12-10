@@ -192,7 +192,7 @@ function Invoke-HostRecon{
 
     Write-Output "[*] Checking if AV is installed"
 
-    $AV = Get-WmiObject -Namespace "root\SecurityCenter2" -Query "SELECT * FROM AntiVirusProduct" 
+    $AV = Get-WMIObject -Class "Win32_Product" -NameSpace "root\cimv2" -ComputerName "." -filter "Name like '%antivirus%'" 
 
     If ($AV -ne "")
         {
